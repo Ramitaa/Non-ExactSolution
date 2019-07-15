@@ -42,7 +42,7 @@ public class NonExactSolution {
         
         long start = System.nanoTime();
         
-        generateSolution(graph);
+        generateSolution();
         
         long finish = System.nanoTime();
     
@@ -79,31 +79,32 @@ public class NonExactSolution {
      * Carry out Step 1 - 4 as shown below to determine if a clique exists
      * @return true if clique exists and vice versa
      */
-    public static int generateSolution(Graph g) 
+    public static int generateSolution() 
     {
         System.out.print("\n");
         printSpecialLine(50, "-");
         System.out.print("\n                SOLUTION DETAILS\n");
         printSpecialLine(50, "-");
+        System.out.println("\n");
         
-        graph = null;
+        /*graph = null;
         newTempList.clear();
         temporaryPotentialCliqueGraph = null;
         edgesToCheck.clear();
-        newEdges.clear();
+        newEdges.clear();*/
         
-        graph = g;
+        //graph = g;
         
         //System.out.println("NON-EXACT SOLUTION!!!");
         //generateProblemInstance();
         
          //Step 1: Check if graph has minimum edges to form k-clique
-        if (!minimumEdgesExists())
-            return 0;
+        //if (!minimumEdgesExists())
+            //return 0;
         
         // Step 2: Check if graph has minimum number of nodes with minimum number of edges
-        if(!minimumNodesWithMinimumEdgesExists())
-            return 0;
+        //if(!minimumNodesWithMinimumEdgesExists())
+            //return 0;
         
         // Step 3: Check if the top 10 edges can form a clique by randomizing the node 100 times
         return cliqueExists();
@@ -273,7 +274,7 @@ public class NonExactSolution {
             {
                 graph.printNodeDetails();
                 bestSolution = p.getValue().clone();
-                System.out.println("Stage 3: " + graph.getCliqueSize() + "-Clique found!");
+                System.out.println("Best Solution with " + graph.getCliqueSize() + "-Clique found!");
                 System.out.println(Arrays.toString(bestSolution));
                 return graph.getCliqueSize();
             }
@@ -283,13 +284,13 @@ public class NonExactSolution {
                 maxClique = p.getKey();
                 bestSolution = p.getValue().clone();
                 bestSolutionExists = true;
-                System.out.println(Arrays.toString(bestSolution));
+                //System.out.println(Arrays.toString(bestSolution));
             }
             
             loop_counter++;    
         }
         
-        System.out.println("Stage 3: " + graph.getCliqueSize() + "-Clique not found!.");
+        //System.out.println("Stage 3: " + graph.getCliqueSize() + "-Clique not found!.");
         System.out.print("Best solution with " + bestSolution.length + "-clique found: ");
         System.out.println(Arrays.toString(bestSolution));
     
